@@ -61,6 +61,7 @@ So the framework does, indeed, have multi-tenancy support. It just requires a ma
 Opening the `xsjs` module and performing a blanket search of the term _tenant_ was where I started in my search. This lead me to file named `DbOptions` which seemed to include the type of logic I was looking for. Even more intriguing, it included a dependency to `@sap/instance-manager`. 
 
 Now I had never heard of this `instance-manager` package but it seemed to be precisely what I needed. Plugging the term into my favorite search engine yieled an entry in the standard SAP Node.js documentation to boot: [`@sap/instance-manager`][dd-1]. The most interesting part of that documentation is this table:
+
 Property | Mandatory | Details
 -------- | --------- | -------
 user | x | User for authentication.
