@@ -1,0 +1,34 @@
+title Custom Instance Manager Implementation
+materialdesignicons f004 User
+participantgroup #lightgray Standard Logic
+materialdesignicons f3d7 Approuter
+materialdesignicons f3d7 XSJS App
+end
+participantgroup #lightblue Custom Logic
+materialdesignicons F431 User-Provided Service
+materialdesignicons f3d7 Instance Manager
+materialdesignicons f1b8 Tenant Data Store
+end
+User-Provided Service-->Instance Manager: Properties reference \n endpoints/auth used in app
+XSJS App<-->User-Provided Service:Bind
+note over XSJS App,User-Provided Service:Binding copies service \nproperties into app env
+User->Approuter: Request through\ntenant route
+activate Approuter
+Approuter->Approuter: Authenticate
+
+Approuter->XSJS App:Route request
+activate XSJS App
+note over Approuter,XSJS App:Request will include JWT Token
+
+deactivate Approuter
+XSJS App->XSJS App:Read Rest Endpoints & \nAuth from env
+XSJS App->XSJS App: Extract Identity Zone\n from JWT Token
+
+XSJS App->Instance Manager: Request tenant credentials using \n Identity Zone, REST Endpoints and Auth
+activate Instance Manager
+
+
+Instance Manager->Tenant Data Store: Request tenant credentials
+Tenant Data Store->Instance Manager: Return tenant credentials
+Instance Manager->XSJS App:Return tenant record
+deactivate Instance Manager

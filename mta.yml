@@ -1,0 +1,32 @@
+ID: xsjs-multitenancy
+_schema-version: '3.1'
+description: XSJS Multitenancy
+parameters:
+  keep-existing-routes: true
+version: 0.0.1
+
+modules:
+  - name: app-js
+    type: nodejs
+    path: app-js
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: skipum-applogs
+      - name: skipum-uaa
+  - name: instance-manager
+    type: nodejs
+    path: instance-manager
+    requires:
+      - name: skipum-uaa
+      - name: skipum-applogs
+resources:
+  - name: skipum-uaa
+    type: com.sap.xs.uaa
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: security/xs-security.json
+  - name: skipum-applogs
+    type: org.cloudfoundry.existing-service
