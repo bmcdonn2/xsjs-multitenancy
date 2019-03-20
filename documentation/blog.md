@@ -180,7 +180,7 @@ Hopefully this blog has provided some insight into how to apply multi-tenant con
 
 # Appendix
 The relevant package versions for applications referenced this blog were:
-- `@sap/xsjs`: `3.3.7`
+- `@sap/xsjs`: `4.0.2`
 - `@sap/approuter`: `5.13.0`
 - `@sap/xsenv`: `1.2.9`
 
